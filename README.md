@@ -23,6 +23,11 @@ output/
     full_dataset_totals/
       A1.xlsx ... A4.xlsx
   02_multi_agent_results/
+    assignment_level_scores/
+      multi_agent_scores_a1.xlsx
+      multi_agent_scores_a2.xlsx
+      multi_agent_scores_a3.xlsx
+      multi_agent_scores_a4.xlsx
     full_dataset_totals/
       A1.xlsx ... A4.xlsx
   03_comparison_metrics_and_subsets/

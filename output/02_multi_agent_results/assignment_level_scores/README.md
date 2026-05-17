@@ -1,17 +1,19 @@
-# ?i?m chi ti?t ?a t?c t?
+# Multi-agent detailed score tables
 
-Th? m?c n?y ch?a c?c b?ng ?i?m chi ti?t ?? ?n danh c?a pipeline ?a t?c t?, song song v?i th? m?c `01_single_agent_results/assignment_level_scores/`.
+This folder contains anonymized assignment-level detailed score tables from the multi-agent pipeline, parallel to `output/01_single_agent_results/assignment_level_scores/`.
 
-## T?p d? li?u
-- `multi_agent_scores_a1.csv`
-- `multi_agent_scores_a2.csv`
-- `multi_agent_scores_a3.csv`
-- `multi_agent_scores_a4.csv`
+## Files
+- `multi_agent_scores_a1.xlsx`
+- `multi_agent_scores_a2.xlsx`
+- `multi_agent_scores_a3.xlsx`
+- `multi_agent_scores_a4.xlsx`
 
-## Gi?i th?ch c?t
-- `M? ?n danh`: m? sinh vi?n ?? ?n danh theo d?ng `Sxxxx`
-- `T?ng ?a t?c t? (/10)`: ?i?m t?ng c?a pipeline multi-agent / phase 2
-- `T?ng ??n t?c t? (/10)`: ?i?m ??i chi?u t? pipeline single-agent / phase 1 c? trong t?p phase2 g?c
-- `Ph? quy?t`: c? ??nh d?u khi b? t?ng h?p ph?t hi?n ch?nh l?ch l?n gi?a c?c chuy?n gia
-- `?? l?ch`: m?c ch?nh gi?a c?c chuy?n gia tr??c b??c t?ng h?p cu?i
-- `T?ng chuy?n gia n?i dung`, `T?ng chuy?n gia c?u tr?c`, `T?ng chuy?n gia ng?n ng?`: ?i?m t?ng t? t?ng nh?nh chuy?n gia
+## Key columns
+- `student_id`: anonymized student code in the form `Sxxxx`
+- `multi_agent_total(/10)`: final phase-2 / multi-agent score
+- `single_agent_total(/10)`: corresponding phase-1 / single-agent score included in the original phase-2 workbook
+- `delta(multi-single)`: score difference between the two pipelines
+- `veto_flag`: chairman veto indicator
+- `spread`: disagreement spread across specialist agents before final aggregation
+- `content_specialist_total`, `structure_specialist_total`, `language_specialist_total`: specialist branch totals before final aggregation
+- `chairman_comment`: final aggregate comment from the chairman stage
