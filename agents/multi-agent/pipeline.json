@@ -1,0 +1,21 @@
+{
+  "name": "multi-agent",
+  "paper_alignment": "MAPR paper multi-agent pipeline",
+  "stages": [
+    "document-ingestion",
+    "content-specialist",
+    "structure-specialist",
+    "language-specialist",
+    "chairman-aggregation",
+    "validation-audit",
+    "export"
+  ],
+  "grading_rule": "three specialists use the same rubric, run concurrently, then chairman aggregates with disagreement tracking",
+  "workspace_code_sources": [
+    "skills/multi-agent-grader/orchestrator.py",
+    "skills/multi-agent-grader/chairman_agent.py",
+    "skills/multi-agent-grader/skills/content-grader/grader.py",
+    "skills/multi-agent-grader/skills/structure-grader/grader.py",
+    "skills/multi-agent-grader/skills/language-grader/grader.py"
+  ]
+}

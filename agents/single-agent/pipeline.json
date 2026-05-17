@@ -1,0 +1,18 @@
+{
+  "name": "single-agent",
+  "paper_alignment": "MAPR paper single-agent pipeline",
+  "stages": [
+    "document-ingestion",
+    "agentic-evaluation",
+    "validation-audit",
+    "export"
+  ],
+  "grading_rule": "exactly one LLM grading call per submission using the full rubric",
+  "workspace_code_sources": [
+    "bt1_grade_incremental.py",
+    "bt2_grade_incremental.py",
+    "bt3_grade_incremental.py",
+    "repo_release_v2/batch_grader.py",
+    "repo_release_v2/bt4_grade_incremental.py"
+  ]
+}

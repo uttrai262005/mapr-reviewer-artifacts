@@ -1,0 +1,158 @@
+{
+  "summary_rows": [
+    {
+      "Assignment": "A1",
+      "Human_QWK": 0.6984455958549223,
+      "gpt52_single_QWK": 0.43168771526980476,
+      "gpt52_single_MAE": 1.2083333333333333,
+      "gpt52_single_Pearson_r": 0.7746289914807152,
+      "gpt54_QWK": -0.027711941659070094,
+      "gpt54_MAE": 5.216666666666667,
+      "gpt54_Pearson_r": -0.41574371020390966,
+      "gpt4o_QWK": -0.05439773931472991,
+      "gpt4o_MAE": 3.1416666666666666,
+      "gpt4o_Pearson_r": -0.3481136787213806,
+      "gpt54mini_QWK": 0.023211648027009923,
+      "gpt54mini_MAE": 3.8666666666666667,
+      "gpt54mini_Pearson_r": 0.2188753131007398
+    },
+    {
+      "Assignment": "A2",
+      "Human_QWK": 0.684029107621601,
+      "gpt52_single_QWK": 0.27651858567543064,
+      "gpt52_single_MAE": 1.525,
+      "gpt52_single_Pearson_r": 0.6973242411903242,
+      "gpt54_QWK": 0.035289384447382055,
+      "gpt54_MAE": 3.75,
+      "gpt54_Pearson_r": 0.3142215982089651,
+      "gpt4o_QWK": 0.27329192546583847,
+      "gpt4o_MAE": 0.8916666666666667,
+      "gpt4o_Pearson_r": 0.25859010551068545,
+      "gpt54mini_QWK": 0.0648971143309387,
+      "gpt54mini_MAE": 4.283333333333333,
+      "gpt54mini_Pearson_r": 0.5385452750316769
+    },
+    {
+      "Assignment": "A3",
+      "Human_QWK": 0.6706382978723404,
+      "gpt52_single_QWK": 0.8273677541970225,
+      "gpt52_single_MAE": 0.725,
+      "gpt52_single_Pearson_r": 0.8944207609694905,
+      "gpt54_QWK": 0.7719152471956793,
+      "gpt54_MAE": 0.9149999999999998,
+      "gpt54_Pearson_r": 0.8504028273632169,
+      "gpt4o_QWK": 0.2735519888346126,
+      "gpt4o_MAE": 1.375,
+      "gpt4o_Pearson_r": 0.519836084725558,
+      "gpt54mini_QWK": 0.5917630057803467,
+      "gpt54mini_MAE": 1.245,
+      "gpt54mini_Pearson_r": 0.7195569491291229
+    },
+    {
+      "Assignment": "A4",
+      "Human_QWK": 0.6277097078228087,
+      "gpt52_single_QWK": 0.7812376823019314,
+      "gpt52_single_MAE": 0.475,
+      "gpt52_single_Pearson_r": 0.7770813587961636,
+      "gpt54_QWK": 0.2904073587385021,
+      "gpt54_MAE": 1.5116666666666665,
+      "gpt54_Pearson_r": 0.22510463815015797,
+      "gpt4o_QWK": 0.20298507462686555,
+      "gpt4o_MAE": 1.4416666666666667,
+      "gpt4o_Pearson_r": 0.29618022291522417,
+      "gpt54mini_QWK": 0.07610305004441809,
+      "gpt54mini_MAE": 2.8266666666666667,
+      "gpt54mini_Pearson_r": 0.20421647947864063
+    }
+  ],
+  "bias_rows": [
+    {
+      "Assignment": "A1",
+      "Mean_GT": 7.275,
+      "gpt52_single_Bias": -1.2083333333333333,
+      "gpt54_Bias": -5.216666666666667,
+      "gpt4o_Bias": -3.075,
+      "gpt54mini_Bias": -3.8666666666666667
+    },
+    {
+      "Assignment": "A2",
+      "Mean_GT": 6.425,
+      "gpt52_single_Bias": -1.4916666666666667,
+      "gpt54_Bias": -3.75,
+      "gpt4o_Bias": -0.39166666666666666,
+      "gpt54mini_Bias": -4.283333333333333
+    },
+    {
+      "Assignment": "A3",
+      "Mean_GT": 5.558333333333334,
+      "gpt52_single_Bias": 0.30833333333333335,
+      "gpt54_Bias": -0.5916666666666666,
+      "gpt4o_Bias": 1.0083333333333333,
+      "gpt54mini_Bias": -0.8983333333333334
+    },
+    {
+      "Assignment": "A4",
+      "Mean_GT": 7.058333333333334,
+      "gpt52_single_Bias": 0.125,
+      "gpt54_Bias": -0.695,
+      "gpt4o_Bias": -1.025,
+      "gpt54mini_Bias": -2.53
+    }
+  ],
+  "multiagent_rows": [
+    {
+      "Assignment": "A1",
+      "Single_Agent_QWK": 0.43168771526980476,
+      "Multi_Agent_QWK": 0.04290837146036852,
+      "Multi_Agent_MAE": 1.8416666666666666,
+      "Multi_Agent_Pearson_r": 0.22473942391464796
+    },
+    {
+      "Assignment": "A2",
+      "Single_Agent_QWK": 0.27651858567543064,
+      "Multi_Agent_QWK": -0.0020876826722338038,
+      "Multi_Agent_MAE": 0.9583333333333334,
+      "Multi_Agent_Pearson_r": -0.009598984353200612
+    },
+    {
+      "Assignment": "A3",
+      "Single_Agent_QWK": 0.8273677541970225,
+      "Multi_Agent_QWK": 0.6126914660831511,
+      "Multi_Agent_MAE": 1.0583333333333333,
+      "Multi_Agent_Pearson_r": 0.6730598887590802
+    },
+    {
+      "Assignment": "A4",
+      "Single_Agent_QWK": 0.7812376823019314,
+      "Multi_Agent_QWK": 0.5174825174825175,
+      "Multi_Agent_MAE": 0.6083333333333333,
+      "Multi_Agent_Pearson_r": 0.55328051590153
+    }
+  ],
+  "full_delta_rows": [
+    {
+      "Assignment": "A1",
+      "N_full": 137,
+      "mean_P2_minus_P1": -0.8357664233576643,
+      "median_P2_minus_P1": -1.0
+    },
+    {
+      "Assignment": "A2",
+      "N_full": 129,
+      "mean_P2_minus_P1": 1.7868217054263567,
+      "median_P2_minus_P1": 2.0
+    },
+    {
+      "Assignment": "A3",
+      "N_full": 123,
+      "mean_P2_minus_P1": -0.943089430894309,
+      "median_P2_minus_P1": -1.0
+    },
+    {
+      "Assignment": "A4",
+      "N_full": 131,
+      "mean_P2_minus_P1": -0.8893129770992366,
+      "median_P2_minus_P1": -1.0
+    }
+  ]
+}

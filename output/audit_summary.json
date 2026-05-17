@@ -1,0 +1,72 @@
+{
+  "note": "Derived artifacts (anonymized). Student identifiers replaced with sequential IDs.",
+  "assignments": {
+    "bt1": {
+      "file": "repo_release_v2\\output\\anonymized_scores_bt1.csv",
+      "rows": 137,
+      "unique_ids": 137,
+      "missing_id_rows": 0,
+      "duplicate_id_rows": 0,
+      "columns": [
+        "MSSV",
+        "TC1(/2)",
+        "TC2(/2)",
+        "TC3(/2)",
+        "TC4(/2)",
+        "TC5(/2)",
+        "Tổng(/10)",
+        "Nhận xét ngắn"
+      ]
+    },
+    "bt2": {
+      "file": "repo_release_v2\\output\\anonymized_scores_bt2.csv",
+      "rows": 129,
+      "unique_ids": 129,
+      "missing_id_rows": 0,
+      "duplicate_id_rows": 0,
+      "columns": [
+        "MSSV",
+        "TC1(/1.5)",
+        "TC2(/2)",
+        "TC3(/2.5)",
+        "TC4(/2)",
+        "TC5(/2)",
+        "Tổng(/10)",
+        "Nhận xét ngắn"
+      ]
+    },
+    "bt3": {
+      "file": "repo_release_v2\\output\\anonymized_scores_bt3.csv",
+      "rows": 123,
+      "unique_ids": 123,
+      "missing_id_rows": 0,
+      "duplicate_id_rows": 0,
+      "columns": [
+        "MSSV",
+        "TC1(/1.5)",
+        "TC2(/2)",
+        "TC3(/3)",
+        "TC4(/2)",
+        "TC5(/1.5)",
+        "Tổng(/10)",
+        "Nhận xét ngắn"
+      ]
+    },
+    "bt4": {
+      "file": "repo_release_v2\\output\\anonymized_scores_bt4.csv",
+      "rows": 131,
+      "unique_ids": 131,
+      "missing_id_rows": 0,
+      "duplicate_id_rows": 0,
+      "columns": [
+        "MSSV",
+        "TC1(/3)",
+        "TC2(/4)",
+        "TC3(/2.5)",
+        "TC4(/0.5)",
+        "Tổng(/10)",
+        "Nhận xét ngắn"
+      ]
+    }
+  }
+}
