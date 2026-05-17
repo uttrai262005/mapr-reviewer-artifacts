@@ -5,22 +5,28 @@
 - `agents/multi-agent/`: Phase 2 multi-agent pipeline
 - `rubric/`: rubric documents for A1-A4
 
-## Public score tables
-- `output/anonymized_scores_a1.csv` ... `output/anonymized_scores_a4.csv`
+## Output groups
 
-## Reviewer benchmark package
-- `output/reviewer_data/human_subset_scores.xlsx`
-- `output/reviewer_data/gpt52_single_full/A1.xlsx` ... `A4.xlsx`
-- `output/reviewer_data/gpt52_multi_full/A1.xlsx` ... `A4.xlsx`
-- `output/reviewer_data/gpt4o_full/A1.xlsx` ... `A4.xlsx`
-- `output/reviewer_data/gpt54mini_full/A1.xlsx` ... `A4.xlsx`
-- `output/reviewer_data/gpt54_subset/A1.xlsx` ... `A4.xlsx`
+### 1. Single-agent results
+Path: `output/01_single_agent_results/`
+- `assignment_level_scores/single_agent_scores_a1.csv` ... `single_agent_scores_a4.csv`
+- `full_dataset_totals/A1.xlsx` ... `A4.xlsx`
 
-## Recomputed outputs
-- `output/mapr_analysis_tables.xlsx`
-- `output/mapr_analysis_summary.json`
-- `output/phase2_aggregation_ablation.xlsx`
-- `output/audit_summary.json`
+### 2. Multi-agent results
+Path: `output/02_multi_agent_results/`
+- `full_dataset_totals/A1.xlsx` ... `A4.xlsx`
+
+### 3. Comparison metrics and subsets
+Path: `output/03_comparison_metrics_and_subsets/`
+- `human_evaluation_subset/human_subset_scores.xlsx`
+- `human_evaluation_subset/id_map_summary.json`
+- `external_baselines/gpt4o_full/A1.xlsx` ... `A4.xlsx`
+- `external_baselines/gpt54mini_full/A1.xlsx` ... `A4.xlsx`
+- `external_baselines/gpt54_subset/A1.xlsx` ... `A4.xlsx`
+- `evaluation_reports/benchmark_metrics_tables.xlsx`
+- `evaluation_reports/benchmark_metrics_summary.json`
+- `evaluation_reports/single_vs_multi_ablation.xlsx`
+- `evaluation_reports/validation_audit_summary.json`
 
 ## Naming note
 `A1`-`A4` are the public reviewer labels corresponding to the four course assignments.

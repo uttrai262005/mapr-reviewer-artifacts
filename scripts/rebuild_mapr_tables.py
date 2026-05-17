@@ -8,11 +8,17 @@ from scipy.stats import pearsonr
 from sklearn.metrics import cohen_kappa_score
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / 'output' / 'reviewer_data'
-OUT_XLSX = ROOT / 'output' / 'mapr_analysis_tables.xlsx'
-OUT_JSON = ROOT / 'output' / 'mapr_analysis_summary.json'
+SINGLE_SRC = ROOT / 'output' / '01_single_agent_results' / 'full_dataset_totals'
+MULTI_SRC = ROOT / 'output' / '02_multi_agent_results' / 'full_dataset_totals'
+COMPARE_ROOT = ROOT / 'output' / '03_comparison_metrics_and_subsets'
+HUMAN_SUBSET_XLSX = COMPARE_ROOT / 'human_evaluation_subset' / 'human_subset_scores.xlsx'
+BASELINE_SRC = COMPARE_ROOT / 'external_baselines'
+REPORT_DIR = COMPARE_ROOT / 'evaluation_reports'
+OUT_XLSX = REPORT_DIR / 'benchmark_metrics_tables.xlsx'
+OUT_JSON = REPORT_DIR / 'benchmark_metrics_summary.json'
 
 ASSIGNMENTS = ['A1', 'A2', 'A3', 'A4']
+
 
 def qwk_int(a, b):
     ai = np.round(np.asarray(a, dtype=float) * 2).astype('float')
@@ -22,6 +28,7 @@ def qwk_int(a, b):
         return np.nan
     return float(cohen_kappa_score(ai[m].astype(int), bi[m].astype(int), weights='quadratic'))
 
+
 def mae(a, b):
     a = np.asarray(a, dtype=float)
     b = np.asarray(b, dtype=float)
@@ -30,6 +37,7 @@ def mae(a, b):
         return np.nan
     return float(np.mean(np.abs(a[m] - b[m])))
 
+
 def pearson(a, b):
     a = np.asarray(a, dtype=float)
     b = np.asarray(b, dtype=float)
@@ -37,6 +45,7 @@ def pearson(a, b):
     if m.sum() < 2:
         return np.nan
     return float(pearsonr(a[m], b[m]).statistic)
+
 
 def bootstrap_ci(metric_fn, x, y, B=3000, seed=42):
     x = np.asarray(x, dtype=float)
@@ -54,23 +63,29 @@ def bootstrap_ci(metric_fn, x, y, B=3000, seed=42):
         vals.append(metric_fn(x[idx], y[idx]))
     return (float(np.nanpercentile(vals, 2.5)), float(np.nanpercentile(vals, 97.5)))
 
+
 def read_human_subset():
-    path = SRC / 'human_subset_scores.xlsx'
-    return {a: pd.read_excel(path, sheet_name=a) for a in ASSIGNMENTS}
+    return {a: pd.read_excel(HUMAN_SUBSET_XLSX, sheet_name=a) for a in ASSIGNMENTS}
+
 
 def load_total_table(path: Path) -> pd.DataFrame:
     df = pd.read_excel(path)
     sid = 'student_id' if 'student_id' in df.columns else 'student'
-    return pd.DataFrame({'student_id': df[sid].astype(str).str.strip(), 'total': pd.to_numeric(df['total'], errors='coerce')}).drop_duplicates(subset=['student_id'])
+    return pd.DataFrame({
+        'student_id': df[sid].astype(str).str.strip(),
+        'total': pd.to_numeric(df['total'], errors='coerce'),
+    }).drop_duplicates(subset=['student_id'])
+
 
 def load_sources():
     return {
-        'gpt52_single_full': {a: load_total_table(SRC / 'gpt52_single_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
-        'gpt52_multi_full': {a: load_total_table(SRC / 'gpt52_multi_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
-        'gpt4o_full': {a: load_total_table(SRC / 'gpt4o_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
-        'gpt54mini_full': {a: load_total_table(SRC / 'gpt54mini_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
-        'gpt54_subset': {a: load_total_table(SRC / 'gpt54_subset' / f'{a}.xlsx') for a in ASSIGNMENTS},
+        'gpt52_single_full': {a: load_total_table(SINGLE_SRC / f'{a}.xlsx') for a in ASSIGNMENTS},
+        'gpt52_multi_full': {a: load_total_table(MULTI_SRC / f'{a}.xlsx') for a in ASSIGNMENTS},
+        'gpt4o_full': {a: load_total_table(BASELINE_SRC / 'gpt4o_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
+        'gpt54mini_full': {a: load_total_table(BASELINE_SRC / 'gpt54mini_full' / f'{a}.xlsx') for a in ASSIGNMENTS},
+        'gpt54_subset': {a: load_total_table(BASELINE_SRC / 'gpt54_subset' / f'{a}.xlsx') for a in ASSIGNMENTS},
     }
+
 
 def build_subset_tables(human_subset, sources):
     merged = {}
@@ -85,6 +100,7 @@ def build_subset_tables(human_subset, sources):
         merged[a] = base
     return merged
 
+
 def compute_summary(subset_tables):
     rows = []
     ci_rows = []
@@ -97,8 +113,18 @@ def compute_summary(subset_tables):
         human_ci = bootstrap_ci(qwk_int, df['human1'], df['human2'], seed=100 + i)
         bias = {'Assignment': a, 'Mean_GT': float(np.nanmean(gt))}
         row = {'Assignment': a, 'Human_QWK': human_qwk}
-        ci_row = {'Assignment': a, 'Human_QWK': human_qwk, 'Human_QWK_CI95_low': human_ci[0], 'Human_QWK_CI95_high': human_ci[1]}
-        model_series = {'gpt52_single': df['gpt52_single'], 'gpt54': df['gpt54'], 'gpt4o': df['gpt4o'], 'gpt54mini': df['gpt54mini']}
+        ci_row = {
+            'Assignment': a,
+            'Human_QWK': human_qwk,
+            'Human_QWK_CI95_low': human_ci[0],
+            'Human_QWK_CI95_high': human_ci[1],
+        }
+        model_series = {
+            'gpt52_single': df['gpt52_single'],
+            'gpt54': df['gpt54'],
+            'gpt4o': df['gpt4o'],
+            'gpt54mini': df['gpt54mini'],
+        }
         for j, (model, vals) in enumerate(model_series.items(), start=1):
             row[f'{model}_QWK'] = qwk_int(vals, gt)
             row[f'{model}_MAE'] = mae(vals, gt)
@@ -116,8 +142,15 @@ def compute_summary(subset_tables):
         rows.append(row)
         ci_rows.append(ci_row)
         bias_rows.append(bias)
-        multi_rows.append({'Assignment': a, 'Single_Agent_QWK': row['gpt52_single_QWK'], 'Multi_Agent_QWK': qwk_int(df['gpt52_multi'], gt), 'Multi_Agent_MAE': mae(df['gpt52_multi'], gt), 'Multi_Agent_Pearson_r': pearson(df['gpt52_multi'], gt)})
+        multi_rows.append({
+            'Assignment': a,
+            'Single_Agent_QWK': row['gpt52_single_QWK'],
+            'Multi_Agent_QWK': qwk_int(df['gpt52_multi'], gt),
+            'Multi_Agent_MAE': mae(df['gpt52_multi'], gt),
+            'Multi_Agent_Pearson_r': pearson(df['gpt52_multi'], gt),
+        })
     return pd.DataFrame(rows), pd.DataFrame(ci_rows), pd.DataFrame(bias_rows), pd.DataFrame(multi_rows)
+
 
 def compute_full_deltas(sources):
     rows = []
@@ -126,8 +159,14 @@ def compute_full_deltas(sources):
         p2 = sources['gpt52_multi_full'][a].rename(columns={'total': 'p2'})
         m = p1.merge(p2, on='student_id', how='inner')
         delta = pd.to_numeric(m['p2'], errors='coerce') - pd.to_numeric(m['p1'], errors='coerce')
-        rows.append({'Assignment': a, 'N_full': int(len(m)), 'mean_P2_minus_P1': float(np.nanmean(delta)), 'median_P2_minus_P1': float(np.nanmedian(delta))})
+        rows.append({
+            'Assignment': a,
+            'N_full': int(len(m)),
+            'mean_P2_minus_P1': float(np.nanmean(delta)),
+            'median_P2_minus_P1': float(np.nanmedian(delta)),
+        })
     return pd.DataFrame(rows)
+
 
 def main():
     human_subset = read_human_subset()
@@ -136,7 +175,7 @@ def main():
     summary, ci, bias, multi = compute_summary(subset_tables)
     full_delta = compute_full_deltas(sources)
 
-    OUT_XLSX.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
     with pd.ExcelWriter(OUT_XLSX, engine='openpyxl') as writer:
         summary.to_excel(writer, sheet_name='summary', index=False)
         ci.to_excel(writer, sheet_name='ci_metrics', index=False)
@@ -146,10 +185,16 @@ def main():
         for a, df in subset_tables.items():
             df.to_excel(writer, sheet_name=f'subset_{a}', index=False)
 
-    payload = {'summary_rows': summary.to_dict(orient='records'), 'bias_rows': bias.to_dict(orient='records'), 'multiagent_rows': multi.to_dict(orient='records'), 'full_delta_rows': full_delta.to_dict(orient='records')}
+    payload = {
+        'summary_rows': summary.to_dict(orient='records'),
+        'bias_rows': bias.to_dict(orient='records'),
+        'multiagent_rows': multi.to_dict(orient='records'),
+        'full_delta_rows': full_delta.to_dict(orient='records'),
+    }
     OUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'Saved: {OUT_XLSX}')
     print(f'Saved: {OUT_JSON}')
+
 
 if __name__ == '__main__':
     main()
