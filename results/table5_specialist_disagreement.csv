@@ -1,5 +1,5 @@
-assignment,N,mean_multi_minus_single,veto_rate,mean_spread,content_mean,structure_mean,language_mean,note
-A1,137,-0.814,0.993,5.15,2.284,6.46,7.418,aggregates only (per-submission specialist totals not linkable to current IDs)
-A2,129,1.829,0.922,3.387,3.82,6.398,7.161,aggregates only (per-submission specialist totals not linkable to current IDs)
-A3,123,-0.915,0.772,2.653,3.913,6.14,6.365,aggregates only (per-submission specialist totals not linkable to current IDs)
-A4,131,-0.836,0.061,1.133,6.631,7.258,7.555,aggregates only (per-submission specialist totals not linkable to current IDs)
+assignment,N,mean_multi_minus_single
+A1,137,-0.814
+A2,129,1.829
+A3,123,-0.915
+A4,131,-0.836

@@ -1,6 +1,6 @@
 {
   "name": "single-agent",
-  "paper_alignment": "MAPR paper single-agent pipeline",
+  "paper_alignment": "FISAT 2026 paper single-agent pipeline",
   "stages": [
     "document-ingestion",
     "agentic-evaluation",

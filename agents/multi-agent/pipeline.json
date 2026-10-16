@@ -1,6 +1,6 @@
 {
   "name": "multi-agent",
-  "paper_alignment": "MAPR paper multi-agent pipeline",
+  "paper_alignment": "FISAT 2026 paper multi-agent pipeline",
   "stages": [
     "document-ingestion",
     "content-specialist",
