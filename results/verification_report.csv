@@ -1,0 +1,133 @@
+item,assignment,paper,computed,diff,status
+human_qwk,A1,0.327,0.327,0.0,PASS
+human_qwk,A2,0.611,0.611,-0.0,PASS
+human_qwk,A3,0.709,0.709,0.0,PASS
+human_qwk,A4,0.63,0.63,0.0,PASS
+human_absdiff,A1,0.7,0.701,0.001,PASS
+human_absdiff,A2,0.49,0.492,0.002,PASS
+human_absdiff,A3,0.74,0.744,0.004,PASS
+human_absdiff,A4,0.47,0.469,-0.001,PASS
+gt_sd,A1,0.69,0.689,-0.001,PASS
+gt_sd,A2,0.84,0.843,0.003,PASS
+gt_sd,A3,1.28,1.277,-0.003,PASS
+gt_sd,A4,0.72,0.717,-0.003,PASS
+single_gpt52_qwk,A1,0.272,0.272,0.0,PASS
+single_gpt52_qwk,A2,0.154,0.154,0.0,PASS
+single_gpt52_qwk,A3,0.792,0.792,0.0,PASS
+single_gpt52_qwk,A4,0.565,0.565,-0.0,PASS
+single_gpt52_mae,A1,0.653,0.653,0.0,PASS
+single_gpt52_mae,A2,2.141,2.141,0.0,PASS
+single_gpt52_mae,A3,0.607,0.612,0.005,DIFF
+single_gpt52_mae,A4,0.479,0.479,0.0,PASS
+multi_gpt52_qwk,A1,-0.003,-0.003,-0.0,PASS
+multi_gpt52_qwk,A2,0.375,0.375,0.0,PASS
+multi_gpt52_qwk,A3,0.462,0.462,0.0,PASS
+multi_gpt52_qwk,A4,0.325,0.325,0.0,PASS
+multi_gpt52_mae,A1,1.347,1.347,-0.0,PASS
+multi_gpt52_mae,A2,0.607,0.607,-0.0,PASS
+multi_gpt52_mae,A3,1.062,1.071,0.009,DIFF
+multi_gpt52_mae,A4,0.746,0.746,0.0,PASS
+single_deepseek_qwk,A1,0.187,0.187,-0.0,PASS
+single_deepseek_qwk,A2,0.118,0.118,0.0,PASS
+single_deepseek_qwk,A3,0.378,0.368,-0.01,DIFF
+single_deepseek_qwk,A4,-0.008,-0.008,-0.0,PASS
+multi_deepseek_qwk,A1,-0.147,-0.147,-0.0,PASS
+multi_deepseek_qwk,A2,0.105,0.105,-0.0,PASS
+multi_deepseek_qwk,A3,0.451,0.449,-0.002,DIFF
+multi_deepseek_qwk,A4,0.219,0.219,0.0,PASS
+bias_single,A1,-0.511,-0.511,0.0,PASS
+bias_single,A2,-2.134,-2.134,0.0,PASS
+bias_single,A3,0.103,0.104,0.001,DIFF
+bias_single,A4,0.292,0.292,-0.0,PASS
+bias_multi,A1,-1.325,-1.325,0.0,PASS
+bias_multi,A2,-0.304,-0.304,-0.0,PASS
+bias_multi,A3,-0.804,-0.811,-0.007,DIFF
+bias_multi,A4,-0.544,-0.544,0.0,PASS
+pearson_single,A1,0.463,0.463,0.0,PASS
+pearson_single,A2,0.657,0.657,-0.0,PASS
+pearson_single,A3,0.866,0.866,0.0,PASS
+pearson_single,A4,0.742,0.742,0.0,PASS
+pearson_multi,A1,0.104,0.104,-0.0,PASS
+pearson_multi,A2,0.554,0.554,-0.0,PASS
+pearson_multi,A3,0.69,0.689,-0.001,DIFF
+pearson_multi,A4,0.397,0.397,-0.0,PASS
+spearman_single,A1,0.401,0.401,-0.0,PASS
+spearman_single,A2,0.561,0.561,-0.0,PASS
+spearman_single,A3,0.828,0.825,-0.003,DIFF
+spearman_single,A4,0.727,0.727,0.0,PASS
+spearman_multi,A1,0.113,0.113,-0.0,PASS
+spearman_multi,A2,0.297,0.297,0.0,PASS
+spearman_multi,A3,0.711,0.708,-0.003,DIFF
+spearman_multi,A4,0.405,0.405,0.0,PASS
+t5_mean_diff,A1,-0.814,-0.814,0.0,PASS
+t5_mean_diff,A2,1.83,1.829,-0.001,PASS
+t5_mean_diff,A3,-0.907,-0.915,-0.008,DIFF
+t5_mean_diff,A4,-0.836,-0.836,0.0,PASS
+t5_veto,A1,0.993,0.993,-0.0,PASS
+t5_veto,A2,0.922,0.922,0.0,PASS
+t5_veto,A3,0.772,0.772,0.0,PASS
+t5_veto,A4,0.061,0.061,0.0,PASS
+t5_spread,A1,5.15,5.15,-0.0,PASS
+t5_spread,A2,3.387,3.387,-0.0,PASS
+t5_spread,A3,2.653,2.653,0.0,PASS
+t5_spread,A4,1.133,1.133,-0.0,PASS
+t5_content,A1,2.284,2.284,-0.0,PASS
+t5_content,A2,3.82,3.82,-0.0,PASS
+t5_content,A3,3.913,3.913,0.0,PASS
+t5_content,A4,6.631,6.631,-0.0,PASS
+t5_structure,A1,6.46,6.46,0.0,PASS
+t5_structure,A2,6.398,6.398,0.0,PASS
+t5_structure,A3,6.14,6.14,-0.0,PASS
+t5_structure,A4,7.258,7.258,0.0,PASS
+t5_language,A1,7.418,7.418,-0.0,PASS
+t5_language,A2,7.161,7.161,-0.0,PASS
+t5_language,A3,6.365,6.365,0.0,PASS
+t5_language,A4,7.555,7.555,-0.0,PASS
+t6_mean_qwk,A1,0.018,,,NOT COMPUTED
+t6_mean_qwk,A2,0.34,,,NOT COMPUTED
+t6_mean_qwk,A3,0.452,,,NOT COMPUTED
+t6_mean_qwk,A4,0.284,,,NOT COMPUTED
+t6_mean_mae,A1,1.441,,,NOT COMPUTED
+t6_mean_mae,A2,0.647,,,NOT COMPUTED
+t6_mean_mae,A3,1.156,,,NOT COMPUTED
+t6_mean_mae,A4,0.796,,,NOT COMPUTED
+t6_median_qwk,A1,-0.003,,,NOT COMPUTED
+t6_median_qwk,A2,0.257,,,NOT COMPUTED
+t6_median_qwk,A3,0.573,,,NOT COMPUTED
+t6_median_qwk,A4,0.265,,,NOT COMPUTED
+t6_median_mae,A1,0.717,,,NOT COMPUTED
+t6_median_mae,A2,0.766,,,NOT COMPUTED
+t6_median_mae,A3,0.868,,,NOT COMPUTED
+t6_median_mae,A4,0.734,,,NOT COMPUTED
+t6_weighted_qwk,A1,0.002,,,NOT COMPUTED
+t6_weighted_qwk,A2,0.262,,,NOT COMPUTED
+t6_weighted_qwk,A3,0.376,,,NOT COMPUTED
+t6_weighted_qwk,A4,0.222,,,NOT COMPUTED
+t6_weighted_mae,A1,2.206,,,NOT COMPUTED
+t6_weighted_mae,A2,0.953,,,NOT COMPUTED
+t6_weighted_mae,A3,1.456,,,NOT COMPUTED
+t6_weighted_mae,A4,0.898,,,NOT COMPUTED
+t7_ds_veto,A3,0.772,0.772,0.0,PASS
+t7_ds_veto,A4,0.074,,,NOT COMPUTED
+t7_ds_spread,A3,2.664,2.664,0.0,PASS
+t7_ds_spread,A4,1.109,,,NOT COMPUTED
+human_qwk_95CI,A1,"[0.169, 0.468]","[0.161, 0.460]",,PASS(CI~)
+human_qwk_95CI,A2,"[0.402, 0.744]","[0.396, 0.740]",,PASS(CI~)
+human_qwk_95CI,A3,"[0.603, 0.799]","[0.605, 0.798]",,PASS(CI~)
+human_qwk_95CI,A4,"[0.463, 0.747]","[0.457, 0.750]",,PASS(CI~)
+single_gpt52_qwk_95CI,A1,"[0.128, 0.41]","[0.122, 0.399]",,PASS(CI~)
+single_gpt52_qwk_95CI,A2,"[0.077, 0.245]","[0.078, 0.251]",,PASS(CI~)
+single_gpt52_qwk_95CI,A3,"[0.71, 0.852]","[0.704, 0.855]",,PASS(CI~)
+single_gpt52_qwk_95CI,A4,"[0.373, 0.7]","[0.393, 0.696]",,PASS(CI~)
+single_gpt52_mae_95CI,A1,"[0.555, 0.745]","[0.562, 0.748]",,PASS(CI~)
+single_gpt52_mae_95CI,A2,"[2.006, 2.267]","[2.004, 2.262]",,PASS(CI~)
+single_gpt52_mae_95CI,A3,"[0.508, 0.71]","[0.512, 0.724]",,PASS(CI~)
+single_gpt52_mae_95CI,A4,"[0.41, 0.557]","[0.408, 0.559]",,PASS(CI~)
+multi_gpt52_qwk_95CI,A1,"[-0.078, 0.069]","[-0.075, 0.071]",,PASS(CI~)
+multi_gpt52_qwk_95CI,A2,"[0.103, 0.584]","[0.094, 0.581]",,PASS(CI~)
+multi_gpt52_qwk_95CI,A3,"[0.337, 0.56]","[0.340, 0.562]",,PASS(CI~)
+multi_gpt52_qwk_95CI,A4,"[0.15, 0.478]","[0.151, 0.476]",,PASS(CI~)
+multi_gpt52_mae_95CI,A1,"[1.224, 1.471]","[1.221, 1.478]",,PASS(CI~)
+multi_gpt52_mae_95CI,A2,"[0.512, 0.711]","[0.512, 0.713]",,PASS(CI~)
+multi_gpt52_mae_95CI,A3,"[0.956, 1.173]","[0.965, 1.177]",,PASS(CI~)
+multi_gpt52_mae_95CI,A4,"[0.664, 0.83]","[0.664, 0.826]",,PASS(CI~)

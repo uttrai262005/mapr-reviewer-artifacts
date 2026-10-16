@@ -1,6 +1,5 @@
-pandas
 numpy
-scikit-learn
+pandas
 scipy
 openpyxl
-python-docx
+matplotlib

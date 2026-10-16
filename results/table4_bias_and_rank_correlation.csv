@@ -1,0 +1,9 @@
+assignment,condition,mean_bias,pearson_r,spearman_rho
+A1,single_agent,-0.511,0.463,0.401
+A1,multi_agent,-1.325,0.104,0.113
+A2,single_agent,-2.134,0.657,0.561
+A2,multi_agent,-0.304,0.554,0.297
+A3,single_agent,0.104,0.866,0.825
+A3,multi_agent,-0.811,0.689,0.708
+A4,single_agent,0.292,0.742,0.727
+A4,multi_agent,-0.544,0.397,0.405

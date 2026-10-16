@@ -1,0 +1,5 @@
+assignment,single_gpt52,single_deepseek,multi_gpt52,multi_deepseek,gpt52_veto,gpt52_spread,deepseek_veto,deepseek_spread
+A1,0.272,0.187,-0.003,-0.147,0.993,5.15,,
+A2,0.154,0.118,0.375,0.105,0.922,3.387,,
+A3,0.792,0.368,0.462,0.449,0.772,2.653,0.772,2.664
+A4,0.565,-0.008,0.325,0.219,0.061,1.133,,

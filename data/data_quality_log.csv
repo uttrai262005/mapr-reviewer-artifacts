@@ -1,0 +1,9 @@
+assignment,system,student_id,issue,action
+A1,single_deepseek,S0502,score_missing_in_file,taken from tong_hop_4_bt.xlsx (verify origin)
+A1,single_deepseek,S0420,score_missing_in_file,taken from tong_hop_4_bt.xlsx (verify origin)
+A1,single_deepseek,S0494,score_missing_in_file,taken from tong_hop_4_bt.xlsx (verify origin)
+A1,single_deepseek,S0439,score_missing_in_file,taken from tong_hop_4_bt.xlsx (verify origin)
+A3,tong_hop,,row_not_in_roster,dropped 1 row(s) (all-5.0 placeholder / not graded by humans)
+A3,single_deepseek,S0295,id_alias,file id not in roster; it is the only unknown id and the only roster id is missing -> relabelled (VERIFY)
+A3,single_deepseek,,file_vs_tong_hop_mismatch,1 rows differ after 0.5 rounding; file value used
+A4,multi_deepseek,,file_missing,multiagent_deepseek_bt4.xlsx not found -> all values from tong_hop fallback

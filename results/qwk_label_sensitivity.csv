@@ -1,0 +1,17 @@
+assignment,system,qwk_observed_labels,qwk_fixed_0_10
+A1,single_gpt52,0.272,0.272
+A1,multi_gpt52,-0.003,-0.003
+A1,single_deepseek,0.187,0.192
+A1,multi_deepseek,-0.147,-0.131
+A2,single_gpt52,0.154,0.174
+A2,multi_gpt52,0.375,0.502
+A2,single_deepseek,0.118,0.118
+A2,multi_deepseek,0.105,0.105
+A3,single_gpt52,0.792,0.792
+A3,multi_gpt52,0.462,0.462
+A3,single_deepseek,0.368,0.337
+A3,multi_deepseek,0.449,0.449
+A4,single_gpt52,0.565,0.565
+A4,multi_gpt52,0.325,0.325
+A4,single_deepseek,-0.008,-0.008
+A4,multi_deepseek,0.219,0.219
