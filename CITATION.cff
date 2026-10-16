@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use these data or code, please cite the paper below."
+title: "Artifacts: Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays"
+type: dataset
+authors:
+  - family-names: Trinh
+    given-names: "Tin T."
+    affiliation: "University of Information Technology, VNU-HCM"
+  - family-names: Nguyen
+    given-names: "Truc D."
+    affiliation: "University of Information Technology, VNU-HCM"
+  - family-names: Nguyen
+    given-names: "Nhi U."
+    affiliation: "University of Information Technology, VNU-HCM"
+preferred-citation:
+  type: conference-paper
+  title: "Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays: A Cross-Model Study with Aggregation-Strategy Ablation"
+  authors:
+    - family-names: Trinh
+      given-names: "Tin T."
+    - family-names: Nguyen
+      given-names: "Truc D."
+    - family-names: Nguyen
+      given-names: "Nhi U."
+  collection-title: "FISAT 2026"
+  year: 2026

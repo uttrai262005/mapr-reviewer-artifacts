@@ -64,26 +64,6 @@ The following items differ from the paper or could not be computed (see `results
 * `spearman_single` A3: paper 0.828, recomputed 0.825 (DIFF)
 * `spearman_multi` A3: paper 0.711, recomputed 0.708 (DIFF)
 * `t5_mean_diff` A3: paper -0.907, recomputed -0.915 (DIFF)
-* `t5_veto` A1: paper 0.993, recomputed None (NOT COMPUTED)
-* `t5_veto` A2: paper 0.922, recomputed None (NOT COMPUTED)
-* `t5_veto` A3: paper 0.772, recomputed None (NOT COMPUTED)
-* `t5_veto` A4: paper 0.061, recomputed None (NOT COMPUTED)
-* `t5_spread` A1: paper 5.15, recomputed None (NOT COMPUTED)
-* `t5_spread` A2: paper 3.387, recomputed None (NOT COMPUTED)
-* `t5_spread` A3: paper 2.653, recomputed None (NOT COMPUTED)
-* `t5_spread` A4: paper 1.133, recomputed None (NOT COMPUTED)
-* `t5_content` A1: paper 2.284, recomputed None (NOT COMPUTED)
-* `t5_content` A2: paper 3.82, recomputed None (NOT COMPUTED)
-* `t5_content` A3: paper 3.913, recomputed None (NOT COMPUTED)
-* `t5_content` A4: paper 6.631, recomputed None (NOT COMPUTED)
-* `t5_structure` A1: paper 6.46, recomputed None (NOT COMPUTED)
-* `t5_structure` A2: paper 6.398, recomputed None (NOT COMPUTED)
-* `t5_structure` A3: paper 6.14, recomputed None (NOT COMPUTED)
-* `t5_structure` A4: paper 7.258, recomputed None (NOT COMPUTED)
-* `t5_language` A1: paper 7.418, recomputed None (NOT COMPUTED)
-* `t5_language` A2: paper 7.161, recomputed None (NOT COMPUTED)
-* `t5_language` A3: paper 6.365, recomputed None (NOT COMPUTED)
-* `t5_language` A4: paper 7.555, recomputed None (NOT COMPUTED)
 * `t6_mean_qwk` A1: paper 0.018, recomputed None (NOT COMPUTED)
 * `t6_mean_qwk` A2: paper 0.34, recomputed None (NOT COMPUTED)
 * `t6_mean_qwk` A3: paper 0.452, recomputed None (NOT COMPUTED)
@@ -117,4 +97,14 @@ The following items differ from the paper or could not be computed (see `results
 * Pipeline source code (`agents/`) and rubrics: see their own folders.
 
 ## Cite
-Add the final BibTeX / DOI here after publication. (License: add one for code and one for data.)
+See `CITATION.cff`. Please cite the paper (FISAT 2026) when using these data or code.
+
+```bibtex
+@inproceedings{trinh2026grading,
+  title     = {Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays: A Cross-Model Study with Aggregation-Strategy Ablation},
+  author    = {Trinh, Tin T. and Nguyen, Truc D. and Nguyen, Nhi U.},
+  booktitle = {Proceedings of FISAT 2026},
+  year      = {2026}
+}
+```
+(Update volume, pages and DOI when the proceedings are published.) License: see `LICENSE` if present.

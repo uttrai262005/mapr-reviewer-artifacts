@@ -13,7 +13,7 @@ TWO MODES
    - cleans / reconciles them (every fix is logged)
    - anonymizes student IDs (random S0001..S0520; mapping saved OUTSIDE the public data)
    - writes data/*.csv, results/*.csv, figures, verification report, README/DATA_POLICY
-   - archives the old MAPR-submission files into archive/mapr_submission/ (optional)
+   - archives files of the previous submission into archive/previous_submission/ (optional)
 
 2) REVIEWER MODE (public; needs only data/scores_master.csv from this repo)
        python scripts/build_release.py --repo .
@@ -487,11 +487,11 @@ def load_legacy_specialists(search_roots):
     return out or None
 
 
-LEGACY_ITEMS = ["output", "scripts/rebuild_mapr_tables.py", "ARTIFACTS.md", "REPRODUCIBILITY.md", "DATA_POLICY.md", "README.md"]
+LEGACY_ITEMS = ["output", "scripts/rebuild_tables_legacy.py", "ARTIFACTS.md", "REPRODUCIBILITY.md", "DATA_POLICY.md", "README.md"]
 
 
 def archive_legacy(repo: Path, dry):
-    dst = repo / "archive" / "mapr_submission"
+    dst = repo / "archive" / "previous_submission"
     moved = []
     for item in LEGACY_ITEMS:
         src = repo / item
@@ -563,7 +563,17 @@ columns were excluded. See `DATA_POLICY.md`.
 {missing}
 
 ## Cite
-Add the final BibTeX / DOI here after publication. (License: add one for code and one for data.)
+See `CITATION.cff`. Please cite the paper (FISAT 2026) when using these data or code.
+
+```bibtex
+@inproceedings{{trinh2026grading,
+  title     = {{Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays: A Cross-Model Study with Aggregation-Strategy Ablation}},
+  author    = {{Trinh, Tin T. and Nguyen, Truc D. and Nguyen, Nhi U.}},
+  booktitle = {{Proceedings of FISAT 2026}},
+  year      = {{2026}}
+}}
+```
+(Update volume, pages and DOI when the proceedings are published.) License: see `LICENSE` if present.
 """
 
 DATA_POLICY = """# Data policy
@@ -575,6 +585,8 @@ DATA_POLICY = """# Data policy
 * Do not attempt re-identification.
 """
 
+CFF = 'cff-version: 1.2.0\nmessage: "If you use these data or code, please cite the paper below."\ntitle: "Artifacts: Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays"\ntype: dataset\nauthors:\n  - family-names: Trinh\n    given-names: "Tin T."\n    affiliation: "University of Information Technology, VNU-HCM"\n  - family-names: Nguyen\n    given-names: "Truc D."\n    affiliation: "University of Information Technology, VNU-HCM"\n  - family-names: Nguyen\n    given-names: "Nhi U."\n    affiliation: "University of Information Technology, VNU-HCM"\npreferred-citation:\n  type: conference-paper\n  title: "Single-Agent vs. Multi-Agent LLM Grading for Vietnamese E-commerce Essays: A Cross-Model Study with Aggregation-Strategy Ablation"\n  authors:\n    - family-names: Trinh\n      given-names: "Tin T."\n    - family-names: Nguyen\n      given-names: "Truc D."\n    - family-names: Nguyen\n      given-names: "Nhi U."\n  collection-title: "FISAT 2026"\n  year: 2026\n'
+
 REQS = "numpy\npandas\nscipy\nopenpyxl\nmatplotlib\n"
 
 
@@ -585,7 +597,7 @@ def main():
     ap.add_argument("--private-dir", help="where the ID map is stored (default: <repo>/private, git-ignored)")
     ap.add_argument("--legacy-repo", help="old anonymized repo/dir used only to aggregate Table 5 if no GPT specialist file is given")
     ap.add_argument("--qwk-labels", choices=["observed", "fixed"], default="observed")
-    ap.add_argument("--archive-legacy", action="store_true", help="move old MAPR files to archive/mapr_submission/")
+    ap.add_argument("--archive-legacy", action="store_true", help="move files of the previous submission to archive/previous_submission/")
     ap.add_argument("--write-docs", action="store_true", help="(re)write README/DATA_POLICY/requirements (default on in owner mode)")
     ap.add_argument("--no-id-alias", action="store_true", help="do not auto-relabel a single mislabeled id in DeepSeek files")
     ap.add_argument("--dry-run", action="store_true")
@@ -601,7 +613,10 @@ def main():
     if owner:
         raw = Path(args.raw).resolve()
         master_r, spec_gpt_r, spec_ds_r, percrit_r, dropped = load_raw(raw, log, not args.no_id_alias)
-        legacy_agg = load_legacy_specialists([args.legacy_repo, repo / "output", repo / "archive" / "mapr_submission" / "output"])
+        legacy_agg = load_legacy_specialists([args.legacy_repo, repo / "output", repo / "archive" / "previous_submission" / "output"])
+        sm_old = data_dir / "specialists_gpt52_summary.csv"
+        if legacy_agg is None and sm_old.exists():
+            legacy_agg = {r["assignment"]: r for r in pd.read_csv(sm_old).to_dict("records")}
         pdir = Path(args.private_dir) if args.private_dir else repo / "private"
         anon, all_real_ids = anonymize({"m": master_r, "sg": spec_gpt_r, "sd": spec_ds_r, "pc": percrit_r}, pdir)
         master, spec_gpt, spec_ds, percrit = anon["m"], anon["sg"], anon["sd"], anon["pc"]
@@ -613,7 +628,7 @@ def main():
         master = master.sort_values(["assignment", "student_id"]).reset_index(drop=True)
         if legacy_agg and not len(spec_gpt) and not args.dry_run:
             data_dir.mkdir(parents=True, exist_ok=True)
-            pd.DataFrame([dict(assignment=k, **v) for k, v in legacy_agg.items()]).to_csv(
+            pd.DataFrame([{**v, "assignment": k} for k, v in legacy_agg.items()]).to_csv(
                 data_dir / "specialists_gpt52_summary.csv", index=False)
         for f in (spec_gpt, spec_ds, percrit):
             if len(f):
@@ -681,9 +696,12 @@ def main():
         print("\n[NOTE] QWK changes when the full 0-10 label set is used instead of observed labels:")
         print(diff.to_string(index=False))
 
-    if owner and args.archive_legacy:
+    if owner and args.archive_legacy and (data_dir / "scores_master.csv").exists() and (repo / "README.md").exists() \
+            and "scores_master.csv" in (repo / "README.md").read_text(errors="ignore"):
+        print("\n[INFO] repository already migrated (new README present): --archive-legacy skipped")
+    elif owner and args.archive_legacy:
         moved = archive_legacy(repo, args.dry_run)
-        print(f"\nLegacy items {'(dry-run) would be' if args.dry_run else ''} moved to archive/mapr_submission/: {moved}")
+        print(f"\nLegacy items {'(dry-run) would be' if args.dry_run else ''} moved to archive/previous_submission/: {moved}")
 
     # ---- docs
     if (owner or args.write_docs) and not args.dry_run:
@@ -703,6 +721,8 @@ def main():
                                                       ds_spec_note="/A4" if len(spec_ds) and (spec_ds.assignment == "A4").any() else "only"))
         (repo / "DATA_POLICY.md").write_text(DATA_POLICY)
         (repo / "requirements.txt").write_text(REQS)
+        if not (repo / "CITATION.cff").exists():
+            (repo / "CITATION.cff").write_text(CFF)
         sc = repo / "scripts"
         sc.mkdir(exist_ok=True)
         if Path(__file__).resolve() != (sc / "build_release.py").resolve():
